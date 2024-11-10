@@ -20,7 +20,7 @@ return new class extends Migration
                 '25-30',
                 '31-39',
                 '40-50',
-                '50+'
+                '50+',
             ])->nullable();
             $table->date('first_contact_date')->nullable();
             $table->date('last_contact_date')->nullable();
