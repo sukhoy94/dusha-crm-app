@@ -19,7 +19,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-COPY ./crm-app /var/www/html
+COPY . /var/www/html
 
 RUN composer install --no-dev --optimize-autoloader
 
@@ -33,6 +33,9 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
     && chmod -R 755 /var/www/html/bootstrap/cache
 
+COPY .docker/php/create_user.sh /usr/local/bin/create_user.sh
+RUN chmod +x /usr/local/bin/create_user.sh
+
 EXPOSE 9000
 
-CMD ["php-fpm"]
+CMD ["sh", "-c", "/usr/local/bin/create_user.sh && php-fpm"]
