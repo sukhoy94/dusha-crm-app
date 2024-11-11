@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Clients\CreateClient;
+use App\Http\Controllers\Clients\DestroyClient;
+use App\Http\Controllers\Clients\EditClient;
 use App\Http\Controllers\Clients\IndexClient;
-use \App\Http\Controllers\Clients\EditClient;
-use \App\Http\Controllers\Clients\StoreClient;
-use \App\Http\Controllers\Clients\UpdateClient;
-use \App\Http\Controllers\Clients\DestroyClient;
+use App\Http\Controllers\Clients\StoreClient;
+use App\Http\Controllers\Clients\UpdateClient;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 

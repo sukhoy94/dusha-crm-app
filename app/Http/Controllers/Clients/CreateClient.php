@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 
 class CreateClient extends Controller
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return view('clients.create');
     }
 }
