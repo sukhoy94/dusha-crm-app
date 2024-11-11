@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Clients;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Client;
 
 class DestroyClient extends Controller
 {
-    public function __invoke()
+    public function __invoke(Client $client)
     {
-        // TODO: Implement __invoke() method.
+        $client->delete();
+
+        return redirect()->route('clients.index')->with('success', __('messages.client_deleted'));
     }
 }
