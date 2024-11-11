@@ -28,7 +28,9 @@ jobs:
       - name: Deploy to Staging
         run: |
           ssh -tt -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
-            cd $BASE_PATH
+            cd $BASE_PATH || exit 1
+            pwd
+            ls -la
             git pull origin $GIT_BRANCH
             composer install --no-dev --optimize-autoloader
             php artisan migrate --force
