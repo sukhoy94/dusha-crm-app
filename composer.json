@@ -57,7 +57,7 @@
             "./vendor/bin/phpstan analyse"
         ],
         "test": [
-            "@php artisan test"
+            "@php artisan test $@"
         ]
     },
     "extra": {
