@@ -41,6 +41,9 @@
                             <td class="py-3 px-6">{{ $client->gender }}</td>
                             <td class="py-3 px-6 text-center">
                                 <div class="flex justify-center space-x-2">
+                                    <button onclick="showModal({{ $client }})" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 rounded">
+                                        Szczegóły
+                                    </button>
                                     <a href="{{ route('clients.edit', $client) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-3 rounded">
                                         Edytuj
                                     </a>
@@ -65,4 +68,43 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal szczegółów klienta -->
+    <div id="clientModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 hidden">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg w-full">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Szczegóły klienta</h3>
+            <div id="clientDetails" class="text-gray-700 dark:text-gray-300">
+                <!-- Szczegóły klienta zostaną wstawione tutaj przez JavaScript -->
+            </div>
+            <div class="mt-4 flex justify-end">
+                <button onclick="closeModal()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                    Zamknij
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showModal(client) {
+            // Wyświetl modal
+            document.getElementById('clientModal').classList.remove('hidden');
+
+            // Wstaw dane klienta do modala
+            document.getElementById('clientDetails').innerHTML = `
+                <p><strong>Imię:</strong> ${client.first_name}</p>
+                <p><strong>Nazwisko:</strong> ${client.last_name}</p>
+                <p><strong>Email:</strong> ${client.email}</p>
+                <p><strong>Telefon:</strong> ${client.phone}</p>
+                <p><strong>Wiek:</strong> ${client.age_range}</p>
+                <p><strong>Płeć:</strong> ${client.gender}</p>
+                <p><strong>Opis:</strong> ${client.description}</p>
+                <p><strong>Uwagi specjalne:</strong> ${client.special_notes}</p>
+            `;
+        }
+
+        function closeModal() {
+            // Ukryj modal
+            document.getElementById('clientModal').classList.add('hidden');
+        }
+    </script>
 </x-app-layout>
