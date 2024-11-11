@@ -29,6 +29,7 @@ jobs:
         run: |
           ssh -tt -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
             cd /home/sukhoy94/domains/demo-crm.dusha-fund.com
+            git pull origin staging
             composer install --no-dev --optimize-autoloader
             php artisan migrate --force
             php artisan cache:clear
