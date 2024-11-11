@@ -24,11 +24,11 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.ssh_key }}
+          ssh-private-key: ${{ secrets.SSH_KEY }}
 
       - name: Deploy to Staging
         run: |
-          ssh -o -T StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
+          ssh -tt -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
             cd $APP_PATH
             git pull origin $GIT_BRANCH
             composer install --no-dev --optimize-autoloader
