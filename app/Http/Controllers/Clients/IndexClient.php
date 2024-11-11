@@ -11,7 +11,7 @@ class IndexClient extends Controller
 {
     public function __invoke()
     {
-        $clients = Client::paginate(30);
+        $clients = Client::orderBy('first_name')->orderBy('last_name')->paginate(30);
 
         return view('clients.index', compact('clients'));
     }
