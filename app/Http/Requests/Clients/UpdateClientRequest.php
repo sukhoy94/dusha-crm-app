@@ -24,6 +24,8 @@ class UpdateClientRequest extends FormRequest
             'age_range' => 'nullable|in:18-24,25-30,31-39,40-50,50+',
             'description' => 'nullable|string',
             'special_notes' => 'nullable|string',
+            'first_contact_date' => 'nullable|date',
+            'last_contact_date' => 'nullable|date',
         ];
     }
 }

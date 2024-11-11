@@ -86,10 +86,8 @@
 
     <script>
         function showModal(client) {
-            // Wyświetl modal
             document.getElementById('clientModal').classList.remove('hidden');
 
-            // Wstaw dane klienta do modala
             document.getElementById('clientDetails').innerHTML = `
                 <p><strong>Imię:</strong> ${client.first_name}</p>
                 <p><strong>Nazwisko:</strong> ${client.last_name}</p>
@@ -97,6 +95,8 @@
                 <p><strong>Telefon:</strong> ${client.phone}</p>
                 <p><strong>Wiek:</strong> ${client.age_range}</p>
                 <p><strong>Płeć:</strong> ${client.gender}</p>
+                <p><strong>Data pierwszego kontaktu:</strong> ${client.first_contact_date}</p>
+                <p><strong>Data ostatniego kontaktu:</strong> ${client.last_contact_date}</p>
                 <p><strong>Opis:</strong> ${client.description}</p>
                 <p><strong>Uwagi specjalne:</strong> ${client.special_notes}</p>
             `;
