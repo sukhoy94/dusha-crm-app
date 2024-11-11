@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy to Staging
         run: |
-          ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
+          ssh -o -T StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
             cd $APP_PATH
             git pull origin $GIT_BRANCH
             composer install --no-dev --optimize-autoloader
