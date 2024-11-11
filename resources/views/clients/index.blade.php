@@ -10,60 +10,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
 
-                <!-- Przyciski akcji -->
+                <!-- Pole wyszukiwania -->
                 <div class="flex justify-between mb-4">
-                    <a href="{{ route('clients.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <input type="text" id="search" placeholder="Szukaj po imieniu lub nazwisku"
+                           class="w-full p-2 border border-gray-300 rounded-lg focus:border-blue-500">
+                    <a href="{{ route('clients.create') }}" class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Dodaj klienta
                     </a>
                 </div>
 
-                <!-- Tabela klientów -->
-                <table class="min-w-full bg-white border border-gray-200 shadow rounded-lg">
-                    <thead class="bg-gray-100 text-gray-600 text-sm uppercase font-semibold">
-                    <tr>
-                        <th class="py-3 px-6 text-left">Imię</th>
-                        <th class="py-3 px-6 text-left">Nazwisko</th>
-                        <th class="py-3 px-6 text-left">Email</th>
-                        <th class="py-3 px-6 text-left">Telefon</th>
-                        <th class="py-3 px-6 text-left">Wiek</th>
-                        <th class="py-3 px-6 text-left">Płeć</th>
-                        <th class="py-3 px-6 text-center">Akcje</th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-gray-700 text-sm">
-                    @foreach($clients as $client)
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-3 px-6">{{ $client->first_name }}</td>
-                            <td class="py-3 px-6">{{ $client->last_name }}</td>
-                            <td class="py-3 px-6">{{ $client->email }}</td>
-                            <td class="py-3 px-6">{{ $client->phone }}</td>
-                            <td class="py-3 px-6">{{ $client->age_range }}</td>
-                            <td class="py-3 px-6">{{ $client->gender }}</td>
-                            <td class="py-3 px-6 text-center">
-                                <div class="flex justify-center space-x-2">
-                                    <button onclick="showModal({{ $client }})" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 rounded">
-                                        Szczegóły
-                                    </button>
-                                    <a href="{{ route('clients.edit', $client) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-3 rounded">
-                                        Edytuj
-                                    </a>
-                                    <form action="{{ route('clients.destroy', $client) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded">
-                                            Usuń
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-
-                <!-- Linki do nawigacji między stronami -->
-                <div class="mt-6">
-                    {{ $clients->links() }}
+                <!-- Miejsce na tabelę klientów -->
+                <div id="clientTable">
+                    @include('clients.partials.client_table', ['clients' => $clients])
                 </div>
             </div>
         </div>
@@ -85,9 +43,41 @@
     </div>
 
     <script>
+        document.getElementById('search').addEventListener('input', function() {
+            const query = this.value;
+            loadTable(`{{ route('clients.search') }}?query=${query}`);
+        });
+
+        // Funkcja do ładowania tabeli przez AJAX
+        function loadTable(url) {
+            fetch(url, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('clientTable').innerHTML = html;
+                    setupPaginationLinks(); // Przypisanie zdarzenia kliknięcia do linków paginacji
+                })
+                .catch(error => console.log(error));
+        }
+
+        // Przypisuje zdarzenie kliknięcia do linków paginacji
+        function setupPaginationLinks() {
+            document.querySelectorAll('#clientTable .pagination a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    loadTable(this.href); // Załaduj stronę przez AJAX
+                });
+            });
+        }
+
+        // Wywołanie funkcji, aby ustawić zdarzenie przy pierwszym ładowaniu strony
+        setupPaginationLinks();
+
         function showModal(client) {
             document.getElementById('clientModal').classList.remove('hidden');
-
             document.getElementById('clientDetails').innerHTML = `
                 <p><strong>Imię:</strong> ${client.first_name}</p>
                 <p><strong>Nazwisko:</strong> ${client.last_name}</p>
@@ -103,7 +93,6 @@
         }
 
         function closeModal() {
-            // Ukryj modal
             document.getElementById('clientModal').classList.add('hidden');
         }
     </script>

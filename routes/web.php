@@ -6,6 +6,7 @@ use App\Http\Controllers\Clients\CreateClient;
 use App\Http\Controllers\Clients\DestroyClient;
 use App\Http\Controllers\Clients\EditClient;
 use App\Http\Controllers\Clients\IndexClient;
+use App\Http\Controllers\Clients\SearchClient;
 use App\Http\Controllers\Clients\StoreClient;
 use App\Http\Controllers\Clients\UpdateClient;
 use App\Http\Controllers\ProfileController;
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
     // clients
     Route::get('clients', IndexClient::class)->name('clients.index');
+    Route::get('clients/search', SearchClient::class)->name('clients.search');
     Route::get('clients/create', CreateClient::class)->name('clients.create');
     Route::post('clients', StoreClient::class)->name('clients.store');
     Route::get('clients/{client}/edit', EditClient::class)->name('clients.edit');
