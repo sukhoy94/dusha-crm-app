@@ -27,9 +27,8 @@ jobs:
 
       - name: Deploy to Staging
         run: |
-          ssh -tt -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
+          ssh -t -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
             cd /home/sukhoy94/domains/demo-crm.dusha-fund.com
-            rm -rf vendor/
             composer install --no-dev --optimize-autoloader
             php artisan migrate --force
             php artisan cache:clear
