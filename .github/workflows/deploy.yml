@@ -15,7 +15,6 @@ jobs:
       SSH_USER: ${{ secrets.SSH_USER }}
       SSH_HOST: ${{ secrets.SSH_HOST }}
       BASE_PATH: ${{ secrets.BASE_PATH }}
-      APP_PATH: ${{ secrets.APP_PATH }}
       GIT_BRANCH: ${{ secrets.GIT_BRANCH }}
     steps:
       - name: Checkout code
@@ -29,7 +28,7 @@ jobs:
       - name: Deploy to Staging
         run: |
           ssh -tt -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
-            cd $APP_PATH
+            cd $BASE_PATH
             git pull origin $GIT_BRANCH
             composer install --no-dev --optimize-autoloader
             php artisan migrate --force
