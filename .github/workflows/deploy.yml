@@ -28,8 +28,7 @@ jobs:
       - name: Deploy to Staging
         run: |
           ssh -tt -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
-            echo "BASE_PATH is set to: $BASE_PATH"
-            cd $BASE_PATH || exit 1
+            cd /home/sukhoy94/domains/demo-crm.dusha-fund.com || exit 1
             pwd
             ls -la
             git pull origin $GIT_BRANCH
