@@ -35,13 +35,3 @@ jobs:
             php artisan config:cache
             exit;
           EOF
-
-      - name: Deploy to Staging
-        run: |
-          ssh -t -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
-            cd /home/sukhoy94/domains/demo-crm.dusha-fund.com
-            composer install --no-dev --optimize-autoloader
-            php artisan migrate --force
-            php artisan cache:clear
-            php artisan config:cache
-          EOF
