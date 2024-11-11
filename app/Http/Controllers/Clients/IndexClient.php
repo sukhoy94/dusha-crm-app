@@ -11,8 +11,7 @@ class IndexClient extends Controller
 {
     public function __invoke()
     {
-        $clients = Client::all();
-
+        $clients = Client::paginate(30);
         return view('clients.index', compact('clients'));
     }
 }
