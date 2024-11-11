@@ -8,18 +8,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <!-- Sekcja filtrów -->
+            @include('clients.partials.filter_section')
 
-                <!-- Pole wyszukiwania -->
-                <div class="flex justify-between mb-4">
-                    <input type="text" id="search" placeholder="Szukaj po imieniu lub nazwisku"
-                           class="w-full p-2 border border-gray-300 rounded-lg focus:border-blue-500">
-                    <a href="{{ route('clients.create') }}" class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Dodaj klienta
-                    </a>
-                </div>
-
-                <!-- Miejsce na tabelę klientów -->
+            <!-- Miejsce na tabelę klientów -->
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 mt-6">
                 <div id="clientTable">
                     @include('clients.partials.client_table', ['clients' => $clients])
                 </div>
@@ -48,7 +41,6 @@
             loadTable(`{{ route('clients.search') }}?query=${query}`);
         });
 
-        // Funkcja do ładowania tabeli przez AJAX
         function loadTable(url) {
             fetch(url, {
                 headers: {
@@ -58,22 +50,20 @@
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('clientTable').innerHTML = html;
-                    setupPaginationLinks(); // Przypisanie zdarzenia kliknięcia do linków paginacji
+                    setupPaginationLinks();
                 })
                 .catch(error => console.log(error));
         }
 
-        // Przypisuje zdarzenie kliknięcia do linków paginacji
         function setupPaginationLinks() {
             document.querySelectorAll('#clientTable .pagination a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    loadTable(this.href); // Załaduj stronę przez AJAX
+                    loadTable(this.href);
                 });
             });
         }
 
-        // Wywołanie funkcji, aby ustawić zdarzenie przy pierwszym ładowaniu strony
         setupPaginationLinks();
 
         function showModal(client) {
