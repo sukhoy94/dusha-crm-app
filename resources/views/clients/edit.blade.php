@@ -13,7 +13,6 @@
                     @csrf
                     @method('PUT')
 
-                    <!-- Imię -->
                     <div>
                         <label for="first_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Imię</label>
                         <input type="text" name="first_name" id="first_name" value="{{ old('first_name', $client->first_name) }}"
@@ -23,7 +22,6 @@
                         @enderror
                     </div>
 
-                    <!-- Nazwisko -->
                     <div>
                         <label for="last_name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nazwisko</label>
                         <input type="text" name="last_name" id="last_name" value="{{ old('last_name', $client->last_name) }}"
@@ -33,7 +31,6 @@
                         @enderror
                     </div>
 
-                    <!-- Email -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                         <input type="email" name="email" id="email" value="{{ old('email', $client->email) }}"
@@ -43,7 +40,6 @@
                         @enderror
                     </div>
 
-                    <!-- Telefon -->
                     <div>
                         <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Telefon</label>
                         <input type="text" name="phone" id="phone" value="{{ old('phone', $client->phone) }}"
@@ -53,7 +49,6 @@
                         @enderror
                     </div>
 
-                    <!-- Płeć -->
                     <div>
                         <label for="gender" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Płeć</label>
                         <select name="gender" id="gender" class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
@@ -67,7 +62,6 @@
                         @enderror
                     </div>
 
-                    <!-- Wiek -->
                     <div>
                         <label for="age_range" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Zakres wiekowy</label>
                         <select name="age_range" id="age_range" class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
@@ -83,7 +77,6 @@
                         @enderror
                     </div>
 
-                    <!-- Data pierwszego kontaktu -->
                     <div>
 
                         <label for="first_contact_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Data pierwszego kontaktu</label>
@@ -94,7 +87,6 @@
                         @enderror
                     </div>
 
-                    <!-- Data ostatniego kontaktu -->
                     <div>
                         <label for="last_contact_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Data ostatniego kontaktu</label>
                         <input type="date" name="last_contact_date" id="last_contact_date" value="{{ $client->last_contact_date }}"
@@ -104,8 +96,6 @@
                         @enderror
                     </div>
 
-
-                    <!-- Opis -->
                     <div>
                         <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Opis</label>
                         <textarea name="description" id="description" rows="4"
@@ -115,7 +105,6 @@
                         @enderror
                     </div>
 
-                    <!-- Uwagi specjalne -->
                     <div>
                         <label for="special_notes" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Uwagi specjalne</label>
                         <textarea name="special_notes" id="special_notes" rows="4"
@@ -125,7 +114,6 @@
                         @enderror
                     </div>
 
-                    <!-- Przycisk Zapisz -->
                     <div>
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Zapisz zmiany
