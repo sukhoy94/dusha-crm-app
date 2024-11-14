@@ -24,6 +24,7 @@ class ClientFactory extends Factory
             'last_name' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
+            'additional_contact' => $this->faker->phoneNumber,
             'gender' => $this->faker->randomElement(['male', 'female', 'other']),
             'age_range' => $this->faker->randomElement(['18-24', '25-30', '31-39', '40-50', '50+']),
             'description' => $this->faker->sentence,

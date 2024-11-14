@@ -22,5 +22,6 @@ class Client extends Model
         'special_notes',
         'gender',
         'age_range',
+        'additional_contact',
     ];
 }
