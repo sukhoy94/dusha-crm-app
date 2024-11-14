@@ -8,6 +8,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session('success'))
+                <div class="flex items-center bg-green-500 text-white text-sm font-medium p-4 rounded-lg shadow-lg mb-4 animate-fade-in">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>{{ session('success') }}</span>
+                </div>
+            @endif
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <form action="{{ route('clients.update', $client) }}" method="POST" class="space-y-6">
                     @csrf
@@ -45,6 +53,20 @@
                         <input type="text" name="phone" id="phone" value="{{ old('phone', $client->phone) }}"
                                class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
                         @error('phone')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label for="additional_contact" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dodatkowy kontakt</label>
+                        <textarea
+                            name="additional_contact"
+                            id="additional_contact"
+                            rows="4"
+                            class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0"
+                        >{{ old('additional_contact', $client->additional_contact) }}</textarea>
+
+                        @error('additional_contact')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>

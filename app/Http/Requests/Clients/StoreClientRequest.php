@@ -23,8 +23,9 @@ class StoreClientRequest extends FormRequest
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required_without:phone|email|nullable',
-            'phone' => 'required_without:email|nullable|string|max:20',
+            'email' => 'email|nullable',
+            'phone' => 'nullable|string|max:20',
+            'additional_contact' => 'nullable|string|max:255',
             'gender' => 'nullable|in:male,female,other',
             'age_range' => 'nullable|in:18-24,25-30,31-39,40-50,50+',
             'description' => 'nullable|string',

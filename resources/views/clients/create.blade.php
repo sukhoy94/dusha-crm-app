@@ -49,6 +49,20 @@
                     </div>
 
                     <div>
+                        <label for="additional_contact" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dodatkowy kontakt</label>
+                        <textarea
+                            name="additional_contact"
+                            id="additional_contact"
+                            rows="4"
+                            class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0"
+                        >{{ old('additional_contact') }}</textarea>
+
+                        @error('additional_contact')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
                         <label for="gender" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Płeć</label>
                         <select name="gender" id="gender" class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
                             <option value="">Wybierz płeć</option>
