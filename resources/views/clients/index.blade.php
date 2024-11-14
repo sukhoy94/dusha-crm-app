@@ -73,6 +73,7 @@
                 <p><strong>Nazwisko:</strong> ${client.last_name}</p>
                 <p><strong>Email:</strong> ${client.email}</p>
                 <p><strong>Telefon:</strong> ${client.phone}</p>
+                <p><strong>Dodatkowy kontakt:</strong> ${client.additional_contact}</p>
                 <p><strong>Wiek:</strong> ${client.age_range}</p>
                 <p><strong>Płeć:</strong> ${client.gender}</p>
                 <p><strong>Data pierwszego kontaktu:</strong> ${client.first_contact_date}</p>

@@ -12,8 +12,9 @@ class StoreClient extends Controller
 {
     public function __invoke(StoreClientRequest $request)
     {
-        Client::create($request->validated());
+        $client = Client::create($request->validated());
 
-        return redirect()->route('clients.index')->with('success', __('messages.client_created'));
+        return redirect()->route('clients.edit', $client)
+            ->with('success', __('messages.client_created'));
     }
 }
