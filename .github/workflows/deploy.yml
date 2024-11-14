@@ -1,10 +1,12 @@
-name: Test and Deploy to Staging
+name: dusha pipeline
 
 on:
   push:
     branches:
       - staging
+      - mains
   workflow_dispatch:
+
 
 jobs:
   deploy-staging:
