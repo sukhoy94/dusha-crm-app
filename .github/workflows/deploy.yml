@@ -14,7 +14,6 @@ jobs:
     env:
       SSH_USER: ${{ secrets.SSH_USER }}
       SSH_HOST: ${{ secrets.SSH_HOST }}
-      GIT_BRANCH: ${{ secrets.GIT_BRANCH }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,6 +28,33 @@ jobs:
           ssh -tt -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
             cd ${{ vars.BASE_PATH }}
             git pull origin staging
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            php artisan cache:clear
+            php artisan config:cache
+            exit;
+          EOF
+  deploy-main:
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Deploy to Production
+        run: |
+          ssh -tt -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
+            cd ${{ vars.BASE_PATH }}
+            git pull origin main
             composer install --no-dev --optimize-autoloader
             php artisan migrate --force
             php artisan cache:clear
