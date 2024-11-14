@@ -85,8 +85,9 @@
 
                     <!-- Data pierwszego kontaktu -->
                     <div>
+
                         <label for="first_contact_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Data pierwszego kontaktu</label>
-                        <input type="date" name="first_contact_date" id="first_contact_date" value="{{ old('first_contact_date') }}"
+                        <input type="date" name="first_contact_date" id="first_contact_date" value="{{ $client->first_contact_date }}"
                                class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
                         @error('first_contact_date')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -96,7 +97,7 @@
                     <!-- Data ostatniego kontaktu -->
                     <div>
                         <label for="last_contact_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Data ostatniego kontaktu</label>
-                        <input type="date" name="last_contact_date" id="last_contact_date" value="{{ old('last_contact_date') }}"
+                        <input type="date" name="last_contact_date" id="last_contact_date" value="{{ $client->last_contact_date }}"
                                class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
                         @error('last_contact_date')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
