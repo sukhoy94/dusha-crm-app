@@ -129,6 +129,51 @@
                         @enderror
                     </div>
 
+                    <div x-data="{
+        children: [{ first_name: '', last_name: '', age: null }],
+        addChild() {
+            this.children.push({ first_name: '', last_name: '', age: null });
+        },
+        removeChild(index) {
+            this.children.splice(index, 1);
+        }
+    }" class="mt-6">
+                        <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300 font-bold">Dzieci</h3>
+
+                        <template x-for="(child, index) in children" :key="index">
+                            <div class="border rounded p-4 bg-gray-100 dark:bg-gray-800 mt-4">
+                                <div class="flex justify-between items-center">
+                                    <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300">Dziecko <span x-text="index + 1"></span></h5>
+                                    <button type="button" @click="removeChild(index)" class="text-red-500 hover:underline">
+                                        Usuń
+                                    </button>
+                                </div>
+                                <div class="mt-4">
+                                    <label :for="'child_' + index + '_first_name'" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Imię</label>
+                                    <input type="text" :name="'children[' + index + '][first_name]'" :id="'child_' + index + '_first_name'" x-model="child.first_name"
+                                           class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
+                                </div>
+                                <div class="mt-4">
+                                    <label :for="'child_' + index + '_last_name'" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nazwisko</label>
+                                    <input type="text" :name="'children[' + index + '][last_name]'" :id="'child_' + index + '_last_name'" x-model="child.last_name"
+                                           class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
+                                </div>
+                                <div class="mt-4">
+                                    <label :for="'child_' + index + '_age'" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Wiek</label>
+                                    <input type="number" :name="'children[' + index + '][age]'" :id="'child_' + index + '_age'" x-model="child.age"
+                                           class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
+                                </div>
+                            </div>
+                        </template>
+
+                        <div class="mt-6">
+                            <button type="button" @click="addChild()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                Dodaj dziecko
+                            </button>
+                        </div>
+                    </div>
+
+
                     <div>
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Zapisz klienta
