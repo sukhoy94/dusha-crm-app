@@ -15,5 +15,4 @@ class Child extends Model
     {
         return $this->hasMany(FamilyRelation::class, 'child_id');
     }
-
 }
