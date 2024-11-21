@@ -130,9 +130,9 @@
                     </div>
 
                     <div x-data="{
-        children: [{ first_name: '', last_name: '', age: null }],
+        children: [{ first_name: '', last_name: '', age: null, birth_date: '', notes: '' }],
         addChild() {
-            this.children.push({ first_name: '', last_name: '', age: null });
+            this.children.push({ first_name: '', last_name: '', age: null, birth_date: '', notes: '' });
         },
         removeChild(index) {
             this.children.splice(index, 1);
@@ -162,6 +162,17 @@
                                     <label :for="'child_' + index + '_age'" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Wiek</label>
                                     <input type="number" :name="'children[' + index + '][age]'" :id="'child_' + index + '_age'" x-model="child.age"
                                            class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
+                                </div>
+                                <div class="mt-4">
+                                    <label :for="'child_' + index + '_birth_date'" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Data urodzenia</label>
+                                    <input type="date" :name="'children[' + index + '][birth_date]'" :id="'child_' + index + '_birth_date'" x-model="child.birth_date"
+                                           class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
+                                </div>
+                                <div class="mt-4">
+                                    <label :for="'child_' + index + '_notes'" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Uwagi</label>
+                                    <textarea :name="'children[' + index + '][notes]'" :id="'child_' + index + '_notes'" x-model="child.notes"
+                                              rows="3"
+                                              class="mt-1 block w-full rounded-md bg-gray-200 dark:bg-gray-700 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0"></textarea>
                                 </div>
                             </div>
                         </template>
