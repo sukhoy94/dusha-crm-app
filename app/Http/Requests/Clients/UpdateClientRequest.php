@@ -27,6 +27,15 @@ class UpdateClientRequest extends FormRequest
             'special_notes' => 'nullable|string',
             'first_contact_date' => 'nullable|date',
             'last_contact_date' => 'nullable|date',
+
+            // children validation
+            'children.*.id' => 'nullable|exists:children,id',
+            'children.*.first_name' => 'required_with:children|string|max:255',
+            'children.*.last_name' => 'required_with:children|string|max:255',
+            'children.*.age' => 'nullable|integer|min:0',
+            'children.*.birth_date' => 'nullable|date',
+            'children.*.notes' => 'nullable|string|max:255',
+            'children.*._delete' => 'nullable|boolean',
         ];
     }
 }

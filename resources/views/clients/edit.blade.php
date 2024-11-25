@@ -176,7 +176,6 @@
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    @json($children)
 
                     <div x-data="{
                         children: {{ json_encode($children) }},
