@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::get('clients/{client}/edit', EditClient::class)->name('clients.edit');
     Route::put('clients/{client}', UpdateClient::class)->name('clients.update');
     Route::delete('clients/{client}', DestroyClient::class)->name('clients.destroy');
+
+    // invoices
+    Route::get('invoices')->name('invoices.index');
 });
 
 require __DIR__.'/auth.php';
