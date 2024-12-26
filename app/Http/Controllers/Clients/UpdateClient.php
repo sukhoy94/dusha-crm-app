@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Clients;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Clients\StoreClientRequest;
 use App\Http\Requests\Clients\UpdateClientRequest;
 use App\Models\Child;
 use App\Models\Client;
 use App\Models\FamilyRelation;
 use App\RelationshipType;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UpdateClient extends Controller
