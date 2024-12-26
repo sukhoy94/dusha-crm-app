@@ -52,7 +52,7 @@
                         {{ $project->title }}
                     </th>
                     <td class="flex items-center px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Szczegóły</a>
+                        <a href="{{ route('projects.edit', $project) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Szczegóły</a>
                         <form
                             action="{{ route('projects.destroy', $project) }}"
                             method="POST"
