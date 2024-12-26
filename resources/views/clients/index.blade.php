@@ -8,6 +8,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div>
+                <a href="{{ route('clients.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Dodaj klienta
+                </a>
+            </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 mt-6">
                 <table class="min-w-full bg-white border border-gray-200 shadow rounded-lg">
                     <thead class="bg-gray-100 text-gray-600 text-sm uppercase font-semibold">

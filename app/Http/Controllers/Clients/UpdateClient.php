@@ -48,6 +48,8 @@ class UpdateClient extends Controller
             }
         }
         DB::commit();
-        return redirect()->route('clients.index')->with('success', __('messages.client_updated'));
+
+        return redirect()->route('clients.edit', $client)
+            ->with('success', __('messages.client_updated'));
     }
 }
