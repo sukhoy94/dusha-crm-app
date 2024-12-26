@@ -190,7 +190,13 @@
                             }
                         }
                     }" class="mt-6">
-                        <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300 font-bold">Dzieci</h3>
+
+
+                        <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300 font-bold">
+                            @if (!empty($children->items))
+                                Przypisane dzieci do klienta
+                            @endif
+                        </h3>
 
                         <template x-for="(child, index) in children" :key="index">
                             <div x-show="!child._delete" class="border rounded p-4 bg-gray-100 dark:bg-gray-800 mt-4">
