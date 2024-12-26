@@ -180,11 +180,11 @@
                     <div x-data="{
                         children: {{ json_encode($children) }},
                         addChild() {
-                            this.children.push({ id: null, first_name: '', last_name: '', age: null, birth_date: '', notes: '' });
+                            this.children.push({ id: null, first_name: '', last_name: '', age: null, birth_date: '', notes: '', _delete: 0 });
                         },
                         removeChild(index) {
                             if (this.children[index].id !== null) {
-                                this.children[index]._delete = true;
+                                this.children[index]._delete = 1;
                             } else {
                                 this.children.splice(index, 1);
                             }

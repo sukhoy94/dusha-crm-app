@@ -199,26 +199,12 @@
                         <h3 class="mt-4 font-bold">Podgląd danych</h3>
                         <pre x-text="JSON.stringify(children, null, 2)"></pre>
                     </div>
-                    <!-- Ukryte pola dla dzieci -->
-{{--                    <template x-for="(child, index) in children" :key="`child-${index}`">--}}
-{{--                        <div>--}}
-{{--                            <input type="hidden" :name="`children[${index}][name]`" :value="child.name">--}}
-{{--                            <input type="hidden" :name="`children[${index}][last_name]`" :value="child.last_name">--}}
-{{--                            <input type="hidden" :name="`children[${index}][age]`" :value="child.age">--}}
-{{--                            <input type="hidden" :name="`children[${index}][birth_date]`" :value="child.birth_date">--}}
-{{--                            <input type="hidden" :name="`children[${index}][notes]`" :value="child.notes">--}}
-{{--                        </div>--}}
-{{--                    </template>--}}
-
                     <!-- Przycisk zapisu -->
                     <div class="mt-6">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Zapisz klienta
                         </button>
                     </div>
-
-
-
                 </form>
             </div>
         </div>
@@ -232,7 +218,7 @@
         return {
             children: [],
             addChild() {
-                this.children.push({ name: '', last_name: '', age: null, birth_date: null, notes: '' });
+                this.children.push({ first_name: '', last_name: '', age: null, birth_date: null, notes: '' });
             },
             removeChild(index) {
                 this.children.splice(index, 1);

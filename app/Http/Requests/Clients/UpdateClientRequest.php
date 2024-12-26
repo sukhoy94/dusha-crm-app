@@ -35,7 +35,7 @@ class UpdateClientRequest extends FormRequest
             'children.*.age' => 'nullable|integer|min:0',
             'children.*.birth_date' => 'nullable|date',
             'children.*.notes' => 'nullable|string|max:255',
-            'children.*._delete' => 'nullable|boolean',
+            'children.*.delete' => 'nullable|boolean',
         ];
     }
 }

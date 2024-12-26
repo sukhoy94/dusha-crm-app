@@ -26,7 +26,7 @@ class EditClient extends Controller
                     'age' => $child->age,
                     'birth_date' => $child->birth_date,
                     'notes' => $child->notes,
-                    '_delete' => false,
+                    '_delete' => 0,
                 ];
             }),
         ]);
