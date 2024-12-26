@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Projects;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -12,7 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::orderBy('id')->paginate(30);
+        return view('projects.index', compact('projects'));
     }
 
     /**
