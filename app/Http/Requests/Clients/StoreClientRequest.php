@@ -32,6 +32,14 @@ class StoreClientRequest extends FormRequest
             'special_notes' => 'nullable|string',
             'first_contact_date' => 'nullable|date',
             'last_contact_date' => 'nullable|date',
+
+            // children validation
+            'children' => 'nullable|array',
+            'children.*.first_name' => 'required|string|max:255',
+            'children.*.last_name' => 'required|string|max:255',
+            'children.*.age' => 'nullable|integer|min:0',
+            'children.*.birth_date' => 'nullable|date',
+            'children.*.notes' => 'nullable|string',
         ];
     }
 }
