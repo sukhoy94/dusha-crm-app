@@ -130,8 +130,85 @@
                         </div>
                     </div>
 
-                    <!-- Include formularza dzieci -->
-                    @include('clients.partials.child_form')
+                    <div x-data="formHandler()" x-effect="syncHiddenInputs()">
+                        <h2 class="text-lg font-bold">Przypisywanie dzieci do klienta</h2>
+
+                        <!-- Lista formularzy -->
+                        <template x-for="(child, index) in children" :key="index">
+                            <div class="mb-4 p-4 border rounded">
+                                <h3 class="font-semibold">Dziecko <span x-text="index + 1"></span></h3>
+                                <label class="block mb-2">
+                                    Imię:
+                                    <input
+                                        type="text"
+                                        x-model="child.first_name"
+                                        class="block w-full border px-2 py-1 rounded"
+                                        :name="`children[${index}][first_name]`"
+                                    />
+                                </label>
+
+                                <label class="block mb-2">
+                                    Nazwisko:
+                                    <input
+                                        type="text"
+                                        x-model="child.last_name"
+                                        class="block w-full border px-2 py-1 rounded"
+                                        :name="`children[${index}][last_name]`"
+                                    />
+                                </label>
+                                <label class="block mb-2">
+                                    Wiek:
+                                    <input
+                                        type="number"
+                                        x-model="child.age"
+                                        class="block w-full border px-2 py-1 rounded"
+                                        :name="`children[${index}][age]`"
+                                    />
+                                </label>
+                                <label class="block mb-2">
+                                    Data urodzenia:
+                                    <input
+                                        type="date"
+                                        x-model="child.birth_date"
+                                        class="block w-full border px-2 py-1 rounded"
+                                        :name="`children[${index}][birth_date]`"
+                                    />
+                                </label>
+
+                                <label class="block mb-2">
+                                    Dodatkowe uwagi:
+                                    <textarea
+                                        x-model="child.notes"
+                                        class="block w-full border px-2 py-1 rounded"
+                                        :name="`children[${index}][notes]`"
+                                    ></textarea>
+                                </label>
+
+                                <button type="button" @click="removeChild(index)" class="text-red-600">
+                                    Usuń
+                                </button>
+                            </div>
+                        </template>
+
+                        <!-- Przycisk dodawania dzieci -->
+                        <button type="button" @click="addChild" class="bg-blue-500 text-white px-4 py-2 rounded">
+                            Dodaj dziecko
+                        </button>
+
+                        <!-- Podgląd danych -->
+                        <h3 class="mt-4 font-bold">Podgląd danych</h3>
+                        <pre x-text="JSON.stringify(children, null, 2)"></pre>
+                    </div>
+                    <!-- Ukryte pola dla dzieci -->
+{{--                    <template x-for="(child, index) in children" :key="`child-${index}`">--}}
+{{--                        <div>--}}
+{{--                            <input type="hidden" :name="`children[${index}][name]`" :value="child.name">--}}
+{{--                            <input type="hidden" :name="`children[${index}][last_name]`" :value="child.last_name">--}}
+{{--                            <input type="hidden" :name="`children[${index}][age]`" :value="child.age">--}}
+{{--                            <input type="hidden" :name="`children[${index}][birth_date]`" :value="child.birth_date">--}}
+{{--                            <input type="hidden" :name="`children[${index}][notes]`" :value="child.notes">--}}
+{{--                        </div>--}}
+{{--                    </template>--}}
 
                     <!-- Przycisk zapisu -->
                     <div class="mt-6">
@@ -139,9 +216,36 @@
                             Zapisz klienta
                         </button>
                     </div>
+
+
+
                 </form>
             </div>
         </div>
     </div>
 
 </x-app-layout>
+
+
+<script>
+    function formHandler() {
+        return {
+            children: [],
+            addChild() {
+                this.children.push({ name: '', last_name: '', age: null, birth_date: null, notes: '' });
+            },
+            removeChild(index) {
+                this.children.splice(index, 1);
+            },
+            syncHiddenInputs() {
+                this.children.forEach((child, index) => {
+                    const hiddenInputs = document.querySelectorAll(`[data-child-index="${index}"]`);
+                    hiddenInputs.forEach(input => {
+                        const key = input.getAttribute('data-key');
+                        input.value = child[key];
+                    });
+                });
+            }
+        };
+    }
+</script>

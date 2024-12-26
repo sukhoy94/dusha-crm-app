@@ -33,7 +33,6 @@ class StoreClient extends Controller
 
         DB::commit();
 
-
         return redirect()->route('clients.edit', $client)
             ->with('success', __('messages.client_created'));
     }

@@ -3,22 +3,20 @@
         showChildForm: false,
         addChild() {
             this.children.push({ first_name: '', last_name: '', age: null, birth_date: '', notes: '' });
-            this.showChildForm = false; // Ukrycie formularza po dodaniu dziecka
+            this.showChildForm = false;
         },
         removeChild(index) {
-            this.children.splice(index, 1); // Usunięcie dziecka z listy
+            this.children.splice(index, 1);
         }
     }">
     <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300 font-bold">Dodaj dziecko</h3>
 
-    <!-- Przycisk do pokazania formularza -->
     <div class="mt-6">
         <button type="button" @click="showChildForm = true" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Dodaj dziecko
         </button>
     </div>
 
-    <!-- Formularz dodawania dziecka -->
     <div x-show="showChildForm" class="mt-4 border rounded p-4 bg-gray-100 dark:bg-gray-800">
         <h4 class="text-md font-medium text-gray-700 dark:text-gray-300 mb-4">Nowe dziecko</h4>
         <div class="space-y-4">
@@ -58,7 +56,6 @@
         </div>
     </div>
 
-    <!-- Lista dodanych dzieci -->
     <div class="mt-6">
         <h4 class="text-md font-medium text-gray-700 dark:text-gray-300 mb-2">Lista dzieci</h4>
         <template x-for="(child, index) in children" :key="index">
