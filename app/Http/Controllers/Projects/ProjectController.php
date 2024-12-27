@@ -13,6 +13,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::orderBy('id')->paginate(30);
+
         return view('projects.index', compact('projects'));
     }
 
@@ -29,6 +30,7 @@ class ProjectController extends Controller
         ]);
 
         $project = Project::create($validated);
+
         return redirect()->route('projects.index');
     }
 
@@ -53,6 +55,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+
         return redirect()->route('projects.index')->with('success', "Projekt {$project->title} został usunięty");
     }
 }
