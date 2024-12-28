@@ -17,25 +17,7 @@
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex">
-    <!-- Boczne menu nawigacyjne -->
-    <aside class="w-64 bg-gray-800 text-gray-100 shadow-lg">
-        <div class="p-6">
-            <h2 class="text-2xl font-semibold text-white mb-6">Nawigacja</h2>
-            <nav class="space-y-2">
-                <a href="{{ route('dashboard') }}" class="block px-4 py-2 rounded-lg text-gray-200 hover:bg-blue-500 hover:text-white font-medium transition ease-in-out duration-150
-                    {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white' : '' }}">
-                    Dashboard
-                </a>
-                <a href="{{ route('clients.index') }}" class="block px-4 py-2 rounded-lg text-gray-200 hover:bg-blue-500 hover:text-white font-medium transition ease-in-out duration-150
-                    {{ request()->routeIs('clients.index') ? 'bg-blue-600 text-white' : '' }}">
-                    Klienci
-                </a>
-                <!-- Możesz dodać więcej linków tutaj -->
-            </nav>
-        </div>
-    </aside>
-
-    <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+   <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
@@ -101,14 +83,7 @@
                                 href="{{ route('projects.index') }}"
                                 class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                             >
-                                Projekty
-                            </a>
-
-                            <a
-                                href="{{ route('projects.index') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                            >
-                                Warsztaty
+                                Lista projektów
                             </a>
                         </li>
                     </ul>

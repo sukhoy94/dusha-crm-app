@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Projects;
 
+use App\Enum\ProjectType;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -19,7 +20,9 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('projects.create');
+        return view('projects.create', [
+            'projectTypes' => ProjectType::cases(),
+        ]);
     }
 
     public function store(Request $request)
@@ -27,6 +30,7 @@ class ProjectController extends Controller
         $validated = $request->validate([
             'title' => 'required|unique:projects|max:255',
             'description' => 'required',
+            'type' => ['required', 'integer', 'in:' . implode(',', array_map(fn($type) => $type->getId(), ProjectType::cases()))],
         ]);
 
         $project = Project::create($validated);
@@ -36,16 +40,18 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        return view(
+            'projects.edit',
+            [
+                'project' => $project,
+                'projectTypes' => ProjectType::cases(),
+            ]
+        );
     }
 
     public function update(Request $request, Project $project)
     {
-        $validated = $request->validate([
-            'title' => 'required|unique:projects|max:255',
-            'description' => 'required',
-        ]);
-        $project->update($validated);
+        $project->update($request->toArray());
 
         return redirect()
             ->route('projects.edit', $project)
