@@ -10,6 +10,7 @@ use App\Http\Controllers\Clients\SearchClient;
 use App\Http\Controllers\Clients\StoreClient;
 use App\Http\Controllers\Clients\UpdateClient;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Projects\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -29,6 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::get('clients/{client}/edit', EditClient::class)->name('clients.edit');
     Route::put('clients/{client}', UpdateClient::class)->name('clients.update');
     Route::delete('clients/{client}', DestroyClient::class)->name('clients.destroy');
+
+    // projects
+    Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
+    Route::post('projects/store', [ProjectController::class, 'store'])->name('projects.store');
+    Route::delete('projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+    Route::get('projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+    Route::put('projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
 });
 
 require __DIR__.'/auth.php';
