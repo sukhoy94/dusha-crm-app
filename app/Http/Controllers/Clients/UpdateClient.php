@@ -20,7 +20,7 @@ class UpdateClient extends Controller
         $client->update($request->validated());
         if ($request->has('children')) {
             foreach ($request->input('children') as $childData) {
-                if (!empty($childData['_delete']) && $childData['_delete'] == 1) {
+                if (! empty($childData['_delete']) && $childData['_delete'] == 1) {
                     if (isset($childData['id'])) {
                         $child = Child::find($childData['id']);
                         if ($child) {
@@ -30,7 +30,7 @@ class UpdateClient extends Controller
                             $child->delete();
                         }
                     }
-                } elseif (!empty($childData['id'])) {
+                } elseif (! empty($childData['id'])) {
                     // Aktualizacja istniejącego dziecka
                     $child = Child::find($childData['id']);
                     if ($child) {
