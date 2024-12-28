@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Project extends Model
 {
@@ -13,4 +14,14 @@ class Project extends Model
         'description',
         'type',
     ];
+
+    public function clients(): MorphToMany
+    {
+        return $this->morphedByMany(Client::class, 'projectable');
+    }
+
+    public function children(): MorphToMany
+    {
+        return $this->morphedByMany(Child::class, 'projectable');
+    }
 }
