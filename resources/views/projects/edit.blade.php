@@ -21,7 +21,7 @@
                 @method('PUT')
                 <div class="grid gap-4 grid-cols-1 sm:gap-6">
                     <div class="sm:col-span-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa projektu</label>
+                        <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa projektu</label>
                         <input
                             type="text"
                             name="title"
